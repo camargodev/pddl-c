@@ -40,6 +40,8 @@ const AndOrGraphNode &AndOrGraph::get_node(NodeID id) const {
     return nodes[id];
 }
 
+
+
 void AndOrGraph::most_conservative_valuation() {
     /*
       General approach for computing the most conservative valuation:
@@ -88,6 +90,13 @@ void AndOrGraph::most_conservative_valuation() {
     }
 }
 
+struct AndOrGraphNodeCompare {
+    bool operator() (AndOrGraphNode* node1, AndOrGraphNode* node2) {
+        return node1->additive_cost < node2->additive_cost;
+    };
+};
+
+
 void AndOrGraph::weighted_most_conservative_valuation() {
     /*
       General approach for computing the weighted most conservative valuation:
@@ -112,7 +121,8 @@ void AndOrGraph::weighted_most_conservative_valuation() {
       the queue.
     */
 
-    priority_queue<AndOrGraphNode*, vector<AndOrGraphNode*>, AndOrGraph> queue;
+    cout << "STARTED" << endl;
+    priority_queue<AndOrGraphNode*, vector<AndOrGraphNode*>, AndOrGraphNodeCompare> queue;
 
     for (AndOrGraphNode &node : nodes) {
         node.forced_true = false;
@@ -126,7 +136,7 @@ void AndOrGraph::weighted_most_conservative_valuation() {
     }
     
     while (queue.size() > 0) {
-        auto n = queue.top();
+        AndOrGraphNode* n = queue.top();
         queue.pop();
         n->forced_true = true;
         for (auto pred_id : n->predecessor_ids) {
