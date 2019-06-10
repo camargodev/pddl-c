@@ -1,0 +1,115 @@
+INFO     Running translator.
+INFO     translator input: ['./castle/domain.pddl', './castle/castle-5-4-7-cards.pddl']
+INFO     translator arguments: []
+INFO     translator time limit: 60.0s
+INFO     translator memory limit: 1953 MB
+INFO     callstring: /usr/bin/python /home/ofzorzo/Desktop/exercise-c/fast-downward/builds/release64/bin/translate/translate.py ./castle/domain.pddl ./castle/castle-5-4-7-cards.pddl
+time limit 60.00 -> (60, 60)
+Parsing...
+Parsing: [0.000s CPU, 0.003s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.000s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.000s CPU, 0.001s wall-clock]
+Preparing model... [0.010s CPU, 0.002s wall-clock]
+Generated 20 rules.
+Computing model... [0.010s CPU, 0.014s wall-clock]
+1629 relevant atoms
+728 auxiliary atoms
+2357 final queue length
+4649 total queue pushes
+Completing instantiation... [0.030s CPU, 0.040s wall-clock]
+Instantiating: [0.050s CPU, 0.057s wall-clock]
+Computing fact groups...
+Finding invariants...
+7 initial candidates
+Finding invariants: [0.000s CPU, 0.002s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups... [0.000s CPU, 0.001s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+20 uncovered facts
+Choosing groups: [0.000s CPU, 0.000s wall-clock]
+Building translation key... [0.000s CPU, 0.000s wall-clock]
+Computing fact groups: [0.000s CPU, 0.004s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.010s CPU, 0.000s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.000s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.000s CPU, 0.011s wall-clock]
+Translating task: [0.040s CPU, 0.058s wall-clock]
+0 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+0 axioms removed
+24 propositions removed
+Detecting unreachable propositions: [0.020s CPU, 0.015s wall-clock]
+Reordering and filtering variables...
+44 of 44 variables necessary.
+24 of 40 mutex groups necessary.
+1026 of 1026 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [0.000s CPU, 0.006s wall-clock]
+Translator variables: 44
+Translator derived variables: 0
+Translator facts: 206
+Translator goal facts: 16
+Translator mutex groups: 24
+Translator total mutex groups size: 180
+Translator operators: 1026
+Translator axioms: 0
+Translator task size: 8499
+Translator peak memory: 42304 KB
+Writing output... [0.010s CPU, 0.014s wall-clock]
+Done! [0.130s CPU, 0.160s wall-clock]
+INFO     Running search (release64).
+INFO     search input: output.sas
+INFO     search arguments: ['--search', 'astar(lmcut())']
+INFO     search time limit: 59.86s
+INFO     search memory limit: 1953 MB
+INFO     search executable: /home/ofzorzo/Desktop/exercise-c/fast-downward/builds/release64/bin/downward
+INFO     callstring: /home/ofzorzo/Desktop/exercise-c/fast-downward/builds/release64/bin/downward --search 'astar(lmcut())' --internal-plan-file sas_plan < output.sas
+time limit 59.86 -> (60, 60)
+reading input... [t=2.6106e-05s]
+done reading input! [t=0.00245445s]
+packing state variables...done! [t=0.00246782s]
+Variables: 44
+FactPairs: 206
+Bytes per state: 12
+Building successor generator...done! [t=0.00292007s]
+peak memory difference for root successor generator creation: 132 KB
+time for root successor generation creation: 0.000416587s
+done initializing global data [t=0.00295837s]
+Initializing landmark cut heuristic...
+Conducting best first search with reopening closed nodes, (real) bound = 2147483647
+New best heuristic value for lmcut: 14
+[g=0, 1 evaluated, 0 expanded, t=0.00363319s, 5848 KB]
+f = 14 [1 evaluated, 0 expanded, t=0.00365369s, 5848 KB]
+Initial heuristic value for lmcut: 14
+pruning method: none
+New best heuristic value for lmcut: 12
+[g=1, 4 evaluated, 1 expanded, t=0.00424131s, 5848 KB]
+f = 15 [8 evaluated, 3 expanded, t=0.00482611s, 5848 KB]
+f = 17 [11 evaluated, 5 expanded, t=0.00511794s, 5848 KB]
+Completely explored state space -- no solution!
+Actual search time: 0.00147355s [t=0.00514633s]
+Expanded 6 state(s).
+Reopened 0 state(s).
+Evaluated 12 state(s).
+Evaluations: 12
+Generated 18 state(s).
+Dead ends: 6 state(s).
+Expanded until last jump: 5 state(s).
+Reopened until last jump: 0 state(s).
+Evaluated until last jump: 11 state(s).
+Generated until last jump: 15 state(s).
+Number of registered states: 12
+Search time: 0.00182549s
+Total time: 0.00514872s
+Search stopped without finding a solution.
+Peak memory: 5848 KB

@@ -1,0 +1,115 @@
+INFO     Running translator.
+INFO     translator input: ['./castle/domain.pddl', './castle/castle-5-4-7-cards.pddl']
+INFO     translator arguments: ['--relaxed']
+INFO     translator time limit: 59.99s
+INFO     translator memory limit: 1953 MB
+INFO     callstring: /usr/bin/python /home/ofzorzo/Desktop/exercise-c/fast-downward/builds/release64/bin/translate/translate.py ./castle/domain.pddl ./castle/castle-5-4-7-cards.pddl --relaxed
+time limit 59.99 -> (60, 60)
+Parsing...
+Parsing: [0.010s CPU, 0.007s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.000s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.000s CPU, 0.001s wall-clock]
+Preparing model... [0.000s CPU, 0.002s wall-clock]
+Generated 20 rules.
+Computing model... [0.020s CPU, 0.016s wall-clock]
+1629 relevant atoms
+728 auxiliary atoms
+2357 final queue length
+4649 total queue pushes
+Completing instantiation... [0.020s CPU, 0.033s wall-clock]
+Instantiating: [0.040s CPU, 0.052s wall-clock]
+Computing fact groups...
+Finding invariants...
+7 initial candidates
+Finding invariants: [0.000s CPU, 0.001s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups... [0.000s CPU, 0.000s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+182 uncovered facts
+Choosing groups: [0.000s CPU, 0.000s wall-clock]
+Building translation key... [0.010s CPU, 0.001s wall-clock]
+Computing fact groups: [0.010s CPU, 0.002s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.000s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.000s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.000s CPU, 0.002s wall-clock]
+Translating task: [0.040s CPU, 0.050s wall-clock]
+0 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+6 operators removed
+0 axioms removed
+56 propositions removed
+Detecting unreachable propositions: [0.020s CPU, 0.016s wall-clock]
+Reordering and filtering variables...
+154 of 154 variables necessary.
+0 of 0 mutex groups necessary.
+1036 of 1036 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [0.000s CPU, 0.008s wall-clock]
+Translator variables: 154
+Translator derived variables: 0
+Translator facts: 308
+Translator goal facts: 16
+Translator mutex groups: 0
+Translator total mutex groups size: 0
+Translator operators: 1036
+Translator axioms: 0
+Translator task size: 7489
+Translator peak memory: 42052 KB
+Writing output... [0.000s CPU, 0.015s wall-clock]
+Done! [0.130s CPU, 0.152s wall-clock]
+INFO     Running search (release64).
+INFO     search input: output.sas
+INFO     search arguments: ['--search', 'astar(lmcut())']
+INFO     search time limit: 59.85s
+INFO     search memory limit: 1953 MB
+INFO     search executable: /home/ofzorzo/Desktop/exercise-c/fast-downward/builds/release64/bin/downward
+INFO     callstring: /home/ofzorzo/Desktop/exercise-c/fast-downward/builds/release64/bin/downward --search 'astar(lmcut())' --internal-plan-file sas_plan < output.sas
+time limit 59.85 -> (60, 60)
+reading input... [t=2.566e-05s]
+done reading input! [t=0.00263233s]
+packing state variables...done! [t=0.0026456s]
+Variables: 154
+FactPairs: 308
+Bytes per state: 20
+Building successor generator...done! [t=0.00302369s]
+peak memory difference for root successor generator creation: 132 KB
+time for root successor generation creation: 0.000345007s
+done initializing global data [t=0.00305304s]
+Initializing landmark cut heuristic...
+Conducting best first search with reopening closed nodes, (real) bound = 2147483647
+New best heuristic value for lmcut: 12
+[g=0, 1 evaluated, 0 expanded, t=0.00367858s, 5776 KB]
+f = 12 [1 evaluated, 0 expanded, t=0.0037017s, 5776 KB]
+Initial heuristic value for lmcut: 12
+pruning method: none
+f = 13 [4 evaluated, 1 expanded, t=0.00445083s, 5776 KB]
+f = 14 [12 evaluated, 4 expanded, t=0.00644813s, 5776 KB]
+f = 15 [30 evaluated, 9 expanded, t=0.0108322s, 5776 KB]
+New best heuristic value for lmcut: 10
+[g=4, 42 evaluated, 13 expanded, t=0.0136862s, 5776 KB]
+New best heuristic value for lmcut: 9
+[g=5, 369 evaluated, 52 expanded, t=0.0814992s, 5820 KB]
+New best heuristic value for lmcut: 8
+[g=6, 378 evaluated, 53 expanded, t=0.0831729s, 5820 KB]
+f = 16 [963 evaluated, 124 expanded, t=0.179636s, 5820 KB]
+New best heuristic value for lmcut: 7
+[g=9, 1027 evaluated, 131 expanded, t=0.189231s, 5820 KB]
+f = 17 [14850 evaluated, 1786 expanded, t=2.45031s, 6912 KB]
+New best heuristic value for lmcut: 6
+[g=10, 100555 evaluated, 12117 expanded, t=15.7922s, 14224 KB]
+f = 18 [110208 evaluated, 13335 expanded, t=17.2778s, 14888 KB]
+New best heuristic value for lmcut: 5
+[g=13, 130310 evaluated, 15749 expanded, t=19.5139s, 18084 KB]
+New best heuristic value for lmcut: 4
+[g=14, 130330 evaluated, 15751 expanded, t=19.5149s, 18084 KB]
+Command '['/home/ofzorzo/Desktop/exercise-c/fast-downward/builds/release64/bin/downward', '--search', 'astar(lmcut())', '--internal-plan-file', 'sas_plan']' returned non-zero exit status -9
