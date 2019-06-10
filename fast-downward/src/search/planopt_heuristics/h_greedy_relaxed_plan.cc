@@ -20,8 +20,55 @@ int GreedyRelaxedPlanHeuristic::compute_heuristic(const GlobalState &state) {
         proposition_reached[id] = true;
     }
 
-    // TODO: add your code for exercise 1 (c) here.
-    return DEAD_END;
+    int cost = 0;
+    while(true){
+        //PASSO 1: INICIO
+        //  testa se estado atual satisfaz goal
+        bool goal_satisfied = true;
+        for(PropositionID id : relaxed_task.goal){
+            if(proposition_reached[id]==false){
+                goal_satisfied = false;
+                break;
+            }
+        }
+        if(goal_satisfied)
+            return cost;
+        //PASSO 1: FIM
+
+        //PASSO 2: INICIO
+        //  descobre se tem algum operador o em relaxed_task.operators aplicavel em s e que leve a um estado s' diferente de s
+        bool applied = false;
+        for(RelaxedOperator o : relaxed_task.operators){
+            bool applicable = true;
+            for(PropositionID id : o.preconditions){
+                if(proposition_reached[id]==false){ // se alguma pre-condicao nao faz parte do estado atual, operador nao eh aplicavel
+                    applicable = false;
+                    break;
+                }
+            }
+            if(applicable){
+                for(PropositionID id : o.effects){
+                    if(proposition_reached[id]==false){ // primeiro operador que adiciona uma variavel nova ao estado eh aplicado
+                        proposition_reached[id] = true;
+                        operator_used[o.id] = true;
+                        applied = true;
+                    }
+                }
+            }
+            if(applied){
+                cost = cost + o.cost;
+                break; // nao analisa operadores seguintes, uma vez que ja aplicamos um operador ao estado atual e devemos checar se chegamos ao objetivo
+            }
+        }
+        //PASSO 2: FIM
+
+        //PASSO 3: INICIO
+        //  se nenhum dos operadores aplicaveis levou s a s', com s' diferente de s, retorna sem solucao
+        if(applied==false)
+            return DEAD_END;
+        //PASSO 3: INICIO  
+
+    }
 }
 
 static Heuristic *_parse(OptionParser &parser) {

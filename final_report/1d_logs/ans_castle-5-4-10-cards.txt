@@ -1,0 +1,69 @@
+INFO     Running translator.
+INFO     translator input: ['./castle/domain.pddl', './castle/castle-5-4-10-cards.pddl']
+INFO     translator arguments: []
+INFO     translator time limit: None
+INFO     translator memory limit: None
+INFO     callstring: /usr/bin/python /home/ofzorzo/Desktop/exercise-c/fast-downward/builds/release64/bin/translate/translate.py ./castle/domain.pddl ./castle/castle-5-4-10-cards.pddl
+Parsing...
+Parsing: [0.000s CPU, 0.004s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.001s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.000s CPU, 0.001s wall-clock]
+Preparing model... [0.000s CPU, 0.002s wall-clock]
+Generated 20 rules.
+Computing model... [0.010s CPU, 0.003s wall-clock]
+355 relevant atoms
+209 auxiliary atoms
+564 final queue length
+607 total queue pushes
+Completing instantiation... [0.000s CPU, 0.001s wall-clock]
+Instantiating: [0.010s CPU, 0.007s wall-clock]
+No relaxed solution! Generating unsolvable task...
+Translator variables: 1
+Translator derived variables: 0
+Translator facts: 2
+Translator goal facts: 1
+Translator mutex groups: 0
+Translator total mutex groups size: 0
+Translator operators: 0
+Translator axioms: 0
+Translator task size: 4
+Translator peak memory: 36112 KB
+Writing output... [0.000s CPU, 0.001s wall-clock]
+Done! [0.010s CPU, 0.013s wall-clock]
+INFO     Running search (release64).
+INFO     search input: output.sas
+INFO     search arguments: ['--search', 'eager_greedy([planopt_greedy_relaxed()])']
+INFO     search time limit: None
+INFO     search memory limit: None
+INFO     search executable: /home/ofzorzo/Desktop/exercise-c/fast-downward/builds/release64/bin/downward
+INFO     callstring: /home/ofzorzo/Desktop/exercise-c/fast-downward/builds/release64/bin/downward --search 'eager_greedy([planopt_greedy_relaxed()])' --internal-plan-file sas_plan < output.sas
+reading input... [t=2.6828e-05s]
+done reading input! [t=6.2542e-05s]
+packing state variables...done! [t=7.0129e-05s]
+Variables: 1
+FactPairs: 2
+Bytes per state: 4
+Building successor generator...done! [t=0.000110445s]
+peak memory difference for root successor generator creation: 0 KB
+time for root successor generation creation: 1.548e-06s
+done initializing global data [t=0.00012897s]
+Conducting best first search without reopening closed nodes, (real) bound = 2147483647
+Initial state is a dead end.
+Initial heuristic value for planopt_greedy_relaxed: infinity
+pruning method: none
+Completely explored state space -- no solution!
+Actual search time: 5.094e-06s [t=0.000215715s]
+Expanded 0 state(s).
+Reopened 0 state(s).
+Evaluated 1 state(s).
+Evaluations: 1
+Generated 0 state(s).
+Dead ends: 0 state(s).
+Number of registered states: 1
+Search time: 2.9676e-05s
+Total time: 0.000219473s
+Search stopped without finding a solution.
+Peak memory: 4828 KB
