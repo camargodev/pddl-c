@@ -1,0 +1,146 @@
+INFO     Running translator.
+INFO     translator input: ['./castle/domain.pddl', './castle/castle-12-7-3-cards.pddl']
+INFO     translator arguments: []
+INFO     translator time limit: 59.99s
+INFO     translator memory limit: 1953 MB
+INFO     callstring: /usr/bin/python /home/ofzorzo/Desktop/exercise-c/fast-downward/builds/release64/bin/translate/translate.py ./castle/domain.pddl ./castle/castle-12-7-3-cards.pddl
+time limit 59.99 -> (60, 60)
+Parsing...
+Parsing: [0.000s CPU, 0.009s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.002s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.000s CPU, 0.001s wall-clock]
+Preparing model... [0.010s CPU, 0.009s wall-clock]
+Generated 20 rules.
+Computing model... [0.070s CPU, 0.085s wall-clock]
+8247 relevant atoms
+2514 auxiliary atoms
+10761 final queue length
+23517 total queue pushes
+Completing instantiation... [0.190s CPU, 0.197s wall-clock]
+Instantiating: [0.270s CPU, 0.295s wall-clock]
+Computing fact groups...
+Finding invariants...
+7 initial candidates
+Finding invariants: [0.000s CPU, 0.002s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.001s wall-clock]
+Instantiating groups... [0.000s CPU, 0.005s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+48 uncovered facts
+Choosing groups: [0.000s CPU, 0.002s wall-clock]
+Building translation key... [0.000s CPU, 0.001s wall-clock]
+Computing fact groups: [0.010s CPU, 0.014s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.001s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.001s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.020s CPU, 0.014s wall-clock]
+Translating task: [0.240s CPU, 0.238s wall-clock]
+0 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+0 axioms removed
+63 propositions removed
+Detecting unreachable propositions: [0.100s CPU, 0.104s wall-clock]
+Reordering and filtering variables...
+99 of 99 variables necessary.
+44 of 99 mutex groups necessary.
+5888 of 5888 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [0.030s CPU, 0.028s wall-clock]
+Translator variables: 99
+Translator derived variables: 0
+Translator facts: 688
+Translator goal facts: 44
+Translator mutex groups: 44
+Translator total mutex groups size: 545
+Translator operators: 5888
+Translator axioms: 0
+Translator task size: 45426
+Translator peak memory: 71532 KB
+Writing output... [0.030s CPU, 0.079s wall-clock]
+Done! [0.690s CPU, 0.776s wall-clock]
+INFO     Running search (release64).
+INFO     search input: output.sas
+INFO     search arguments: ['--search', 'astar(lmcut())']
+INFO     search time limit: 59.28s
+INFO     search memory limit: 1953 MB
+INFO     search executable: /home/ofzorzo/Desktop/exercise-c/fast-downward/builds/release64/bin/downward
+INFO     callstring: /home/ofzorzo/Desktop/exercise-c/fast-downward/builds/release64/bin/downward --search 'astar(lmcut())' --internal-plan-file sas_plan < output.sas
+time limit 59.28 -> (60, 60)
+reading input... [t=2.4772e-05s]
+done reading input! [t=0.0128883s]
+packing state variables...done! [t=0.0129077s]
+Variables: 99
+FactPairs: 688
+Bytes per state: 28
+Building successor generator...done! [t=0.0154003s]
+peak memory difference for root successor generator creation: 1356 KB
+time for root successor generation creation: 0.00245213s
+done initializing global data [t=0.0154353s]
+Initializing landmark cut heuristic...
+Conducting best first search with reopening closed nodes, (real) bound = 2147483647
+New best heuristic value for lmcut: 39
+[g=0, 1 evaluated, 0 expanded, t=0.0212232s, 9516 KB]
+f = 39 [1 evaluated, 0 expanded, t=0.021252s, 9516 KB]
+Initial heuristic value for lmcut: 39
+pruning method: none
+New best heuristic value for lmcut: 37
+[g=1, 4 evaluated, 1 expanded, t=0.0338328s, 9516 KB]
+New best heuristic value for lmcut: 36
+[g=2, 9 evaluated, 2 expanded, t=0.0539809s, 9516 KB]
+f = 40 [16 evaluated, 5 expanded, t=0.0758015s, 9516 KB]
+f = 41 [19 evaluated, 7 expanded, t=0.0802507s, 9516 KB]
+New best heuristic value for lmcut: 34
+[g=5, 26 evaluated, 11 expanded, t=0.106843s, 9516 KB]
+New best heuristic value for lmcut: 32
+[g=7, 37 evaluated, 13 expanded, t=0.143781s, 9516 KB]
+f = 42 [97 evaluated, 32 expanded, t=0.31031s, 9648 KB]
+f = 43 [147 evaluated, 75 expanded, 14 reopened, t=0.452857s, 9648 KB]
+f = 44 [201 evaluated, 105 expanded, 14 reopened, t=0.592106s, 9648 KB]
+New best heuristic value for lmcut: 28
+[g=11, 234 evaluated, 116 expanded, 14 reopened, t=0.677727s, 9648 KB]
+f = 45 [293 evaluated, 151 expanded, 16 reopened, t=0.813156s, 9648 KB]
+f = 46 [608 evaluated, 352 expanded, 51 reopened, t=1.67144s, 9648 KB]
+f = 47 [807 evaluated, 486 expanded, 66 reopened, t=2.20351s, 9648 KB]
+f = 48 [1112 evaluated, 776 expanded, 135 reopened, t=3.02488s, 9648 KB]
+f = 49 [1242 evaluated, 934 expanded, 157 reopened, t=3.35938s, 9648 KB]
+f = 50 [1407 evaluated, 1073 expanded, 159 reopened, t=3.7896s, 9648 KB]
+f = 51 [1609 evaluated, 1236 expanded, 162 reopened, t=4.37377s, 9784 KB]
+f = 52 [1783 evaluated, 1377 expanded, 164 reopened, t=4.80885s, 9784 KB]
+f = 53 [2052 evaluated, 1576 expanded, 174 reopened, t=5.47691s, 9784 KB]
+f = 54 [2302 evaluated, 1792 expanded, 187 reopened, t=6.08072s, 9784 KB]
+f = 55 [2545 evaluated, 1996 expanded, 200 reopened, t=6.62458s, 9784 KB]
+f = 56 [2767 evaluated, 2181 expanded, 214 reopened, t=7.12221s, 9784 KB]
+f = 57 [2972 evaluated, 2339 expanded, 222 reopened, t=7.55733s, 9784 KB]
+f = 58 [3127 evaluated, 2456 expanded, 223 reopened, t=7.86262s, 9784 KB]
+f = 59 [3263 evaluated, 2558 expanded, 223 reopened, t=8.12901s, 9916 KB]
+f = 60 [3333 evaluated, 2642 expanded, 223 reopened, t=8.25614s, 9916 KB]
+f = 61 [3366 evaluated, 2697 expanded, 223 reopened, t=8.3144s, 9916 KB]
+f = 62 [3386 evaluated, 2722 expanded, 223 reopened, t=8.34691s, 9916 KB]
+f = 63 [3391 evaluated, 2734 expanded, 223 reopened, t=8.35364s, 9916 KB]
+f = 64 [3391 evaluated, 2742 expanded, 223 reopened, t=8.35371s, 9916 KB]
+Completely explored state space -- no solution!
+Actual search time: 8.33247s [t=8.35375s]
+Expanded 2743 state(s).
+Reopened 223 state(s).
+Evaluated 3391 state(s).
+Evaluations: 3391
+Generated 11046 state(s).
+Dead ends: 871 state(s).
+Expanded until last jump: 2742 state(s).
+Reopened until last jump: 223 state(s).
+Evaluated until last jump: 3391 state(s).
+Generated until last jump: 11044 state(s).
+Number of registered states: 3391
+Search time: 8.33669s
+Total time: 8.35375s
+Search stopped without finding a solution.
+Peak memory: 9916 KB

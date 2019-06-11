@@ -1,0 +1,103 @@
+INFO     Running translator.
+INFO     translator input: ['./castle/domain.pddl', './castle/castle-5-4-7-cards.pddl']
+INFO     translator arguments: []
+INFO     translator time limit: None
+INFO     translator memory limit: None
+INFO     callstring: /usr/bin/python /home/ofzorzo/Desktop/exercise-c/fast-downward/builds/release64/bin/translate/translate.py ./castle/domain.pddl ./castle/castle-5-4-7-cards.pddl
+Parsing...
+Parsing: [0.000s CPU, 0.019s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.000s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.000s CPU, 0.001s wall-clock]
+Preparing model... [0.010s CPU, 0.005s wall-clock]
+Generated 20 rules.
+Computing model... [0.010s CPU, 0.014s wall-clock]
+1629 relevant atoms
+728 auxiliary atoms
+2357 final queue length
+4649 total queue pushes
+Completing instantiation... [0.030s CPU, 0.042s wall-clock]
+Instantiating: [0.050s CPU, 0.063s wall-clock]
+Computing fact groups...
+Finding invariants...
+7 initial candidates
+Finding invariants: [0.000s CPU, 0.002s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.002s wall-clock]
+Instantiating groups... [0.000s CPU, 0.002s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+20 uncovered facts
+Choosing groups: [0.010s CPU, 0.001s wall-clock]
+Building translation key... [0.000s CPU, 0.000s wall-clock]
+Computing fact groups: [0.010s CPU, 0.010s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.000s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.000s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.000s CPU, 0.003s wall-clock]
+Translating task: [0.040s CPU, 0.044s wall-clock]
+0 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+0 axioms removed
+24 propositions removed
+Detecting unreachable propositions: [0.020s CPU, 0.016s wall-clock]
+Reordering and filtering variables...
+44 of 44 variables necessary.
+24 of 40 mutex groups necessary.
+1026 of 1026 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [0.010s CPU, 0.006s wall-clock]
+Translator variables: 44
+Translator derived variables: 0
+Translator facts: 206
+Translator goal facts: 16
+Translator mutex groups: 24
+Translator total mutex groups size: 180
+Translator operators: 1026
+Translator axioms: 0
+Translator task size: 8499
+Translator peak memory: 42304 KB
+Writing output... [0.000s CPU, 0.013s wall-clock]
+Done! [0.130s CPU, 0.174s wall-clock]
+INFO     Running search (release64).
+INFO     search input: output.sas
+INFO     search arguments: ['--search', 'eager_greedy([planopt_greedy_relaxed()])']
+INFO     search time limit: None
+INFO     search memory limit: None
+INFO     search executable: /home/ofzorzo/Desktop/exercise-c/fast-downward/builds/release64/bin/downward
+INFO     callstring: /home/ofzorzo/Desktop/exercise-c/fast-downward/builds/release64/bin/downward --search 'eager_greedy([planopt_greedy_relaxed()])' --internal-plan-file sas_plan < output.sas
+reading input... [t=3.2421e-05s]
+done reading input! [t=0.00256821s]
+packing state variables...done! [t=0.00258152s]
+Variables: 44
+FactPairs: 206
+Bytes per state: 12
+Building successor generator...done! [t=0.00306847s]
+peak memory difference for root successor generator creation: 132 KB
+time for root successor generation creation: 0.000445755s
+done initializing global data [t=0.00311459s]
+Conducting best first search without reopening closed nodes, (real) bound = 2147483647
+New best heuristic value for planopt_greedy_relaxed: 59
+[g=0, 1 evaluated, 0 expanded, t=0.00426519s, 5660 KB]
+Initial heuristic value for planopt_greedy_relaxed: 59
+pruning method: none
+Completely explored state space -- no solution!
+Actual search time: 0.00434207s [t=0.00864192s]
+Expanded 6 state(s).
+Reopened 0 state(s).
+Evaluated 12 state(s).
+Evaluations: 12
+Generated 18 state(s).
+Dead ends: 6 state(s).
+Number of registered states: 12
+Search time: 0.00524617s
+Total time: 0.00864452s
+Search stopped without finding a solution.
+Peak memory: 5660 KB
