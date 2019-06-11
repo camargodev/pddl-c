@@ -12,31 +12,43 @@ RelaxedTaskGraph::RelaxedTaskGraph(const TaskProxy &task_proxy)
 
         // Add an OR node for each proposition
         for (auto proposition : relaxed_task.propositions) {
-            auto node_id = this->graph.add_node(NodeType::OR);
-            this->variable_node_ids[proposition.id] = node_id;
+            this->variable_node_ids[proposition.id] = this->graph.add_node(NodeType::OR);
+            // cout << "Added node " << this->variable_node_ids[proposition.id] << endl;
         }
 
         // Add an AND node (I) and an edge from each initial node to I
         this->initial_node_id = this->graph.add_node(NodeType::AND);
+        // cout << "INITIAL IS " << this->initial_node_id << endl;
         for (auto id : relaxed_task.initial_state) {
             this->graph.add_edge(this->variable_node_ids[id], this->initial_node_id);
+            // cout << "Added an edge from " << this->variable_node_ids[id] << " to " << this->initial_node_id << endl;
+        }
+
+        // Add an AND node (G) and an edge from G to each goal node 
+        this->goal_node_id = this->graph.add_node(NodeType::AND);
+        // cout << "GOAL IS " << this->goal_node_id << endl;
+        for (auto id : relaxed_task.goal) {
+            this->graph.add_edge(this->goal_node_id, this->variable_node_ids[id]);
+            // cout << "Nodes to GOAL: " << this->variable_node_ids[id] << endl;
+            // cout << "Added an edge from " <<this->goal_node_id  << " to " << this->variable_node_ids[id] << endl;
         }
 
         // Add an AND node (O) for each operation
         for (auto operation : relaxed_task.operators) {
             auto operation_id = this->graph.add_node(NodeType::AND, operation.cost);
-            // Add an edge from O to each operation pre condition
-            for (auto precond_id : operation.preconditions) 
-                this->graph.add_edge(operation_id, this->variable_node_ids[precond_id]);
-            // Add an edge from each operation effect to O
-            for (auto effect_id : operation.effects) 
-                this->graph.add_edge(this->variable_node_ids[effect_id], operation_id);
-        }
+            // cout << "Added operation " << operation_id << endl;
 
-        // Add an AND node (G) and an edge from G to each goal node 
-        this->goal_node_id = this->graph.add_node(NodeType::AND);
-        for (auto id : relaxed_task.goal) {
-            this->graph.add_edge(this->goal_node_id, this->variable_node_ids[id]);
+            // Add an edge from O to each operation pre condition
+            for (auto precond_id : operation.preconditions) {
+                this->graph.add_edge(operation_id, this->variable_node_ids[precond_id]);
+            ///cout << "Added an edge from " << operation_id << " to " << this->variable_node_ids[precond_id] << endl;
+            }
+
+            // Add an edge from each operation effect to O
+            for (auto effect_id : operation.effects) { 
+                this->graph.add_edge(this->variable_node_ids[effect_id], operation_id);
+            // cout << "Added an edge from " << this->variable_node_ids[effect_id] << " to " << operation_id << endl;
+            }
         }
 }
 
@@ -65,6 +77,7 @@ int RelaxedTaskGraph::additive_cost_of_goal() {
     // Compute the weighted most conservative valuation of the graph and use it
     // to return the h^add value of the goal node.
 
+    cout << "GOAL ID is " << this->goal_node_id << endl;
     this->graph.weighted_most_conservative_valuation();
     auto goal_node = this->graph.get_node(this->goal_node_id);
     return goal_node.additive_cost;

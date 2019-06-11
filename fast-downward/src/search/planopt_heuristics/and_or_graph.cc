@@ -92,7 +92,9 @@ void AndOrGraph::most_conservative_valuation() {
 
 struct AndOrGraphNodeCompare {
     bool operator() (AndOrGraphNode* node1, AndOrGraphNode* node2) {
-        return node1->additive_cost < node2->additive_cost;
+        if (node1->additive_cost == node2->additive_cost)
+            return node1->id > node2->id;
+        return node1->additive_cost > node2->additive_cost;
     };
 };
 
@@ -121,57 +123,56 @@ void AndOrGraph::weighted_most_conservative_valuation() {
       the queue.
     */
 
-    cout << "STARTED" << endl;
     priority_queue<AndOrGraphNode*, vector<AndOrGraphNode*>, AndOrGraphNodeCompare> queue;
 
     for (AndOrGraphNode &node : nodes) {
         node.forced_true = false;
         node.num_forced_successors = 0;
+        node.additive_cost = __INT_MAX__;
         if (node.type == NodeType::AND && node.successor_ids.empty()) {
             node.additive_cost = 0;
             queue.push(&node);
-        } else {
-            node.additive_cost = __INT_MAX__;
-        }
+            // cout << "Node " << node.id << " has additive cost 0" << endl;
+        } 
     }
     
     while (queue.size() > 0) {
         AndOrGraphNode* n = queue.top();
         queue.pop();
         n->forced_true = true;
+        // cout << "I popped node " << n->id << " which has " << n->predecessor_ids.size() << " preds and cost " << n->additive_cost << endl;
+        
         for (auto pred_id : n->predecessor_ids) {
             nodes[pred_id].num_forced_successors += 1;
+           
             if (nodes[pred_id].type == NodeType::OR) {
-               // The cost to reach an OR node from a node n is its direct cost plus the additive cost of n
+                // cout << "Node " << pred_id << " is an OR" << endl;
                 int cost = nodes[pred_id].direct_cost + n->additive_cost;
+                // cout << "New cost is " << cost << "; old is " << nodes[pred_id].additive_cost << endl;
                 if (cost < nodes[pred_id].additive_cost) {
-                    // If the newly discovered way of reaching the OR node is cheaper then update
-                    //   its cost and add it to the queue again.
                     nodes[pred_id].additive_cost = cost;
+                    // cout << "  I queued " << pred_id << " with add cost " <<  nodes[pred_id].additive_cost << endl;
                     queue.push(&nodes[pred_id]);  
                 }
-            } else {
-                // Whenever the number of forced true successors of an AND node is increased
-                //   to the total number of its successors
-                if ((unsigned) nodes[pred_id].num_forced_successors == nodes[pred_id].successor_ids.size()) {
-                    nodes[pred_id].additive_cost = nodes[pred_id].direct_cost;
-                    // compute its cost (the sum of the additive costs of 
-                    // all its successors plus its direct cost) and add it to
-                    
-                    // H-MAX: se fosse hmax, o additive_cost seria o máximo additive_cost dos sucessores
-                
-                    for (auto succ_id : nodes[pred_id].predecessor_ids) {
-                        // if one succ has cost INF, then the curr node cost is INF
-                        if (nodes[succ_id].additive_cost == __INT_MAX__) {
-                            nodes[pred_id].additive_cost = __INT_MAX__;
-                            break;
-                        }
-                        nodes[pred_id].additive_cost += nodes[succ_id].additive_cost;
+                continue;
+            } 
+            
+            // cout << "Node " << pred_id << " is an AND" << endl;
+            int forced_successors = nodes[pred_id].num_forced_successors;
+            if ((unsigned) forced_successors == nodes[pred_id].successor_ids.size()) {
+                nodes[pred_id].additive_cost = nodes[pred_id].direct_cost;
+                for (auto succ_id : nodes[pred_id].successor_ids) {
+                    if (nodes[succ_id].additive_cost == __INT_MAX__) {
+                        nodes[pred_id].additive_cost = __INT_MAX__;
+                        break;
                     }
-                    queue.push(&nodes[pred_id]);  
+                    nodes[pred_id].additive_cost += nodes[succ_id].additive_cost;
                 }
-
+                // cout << "  I queued " << pred_id << " with add cost " <<  nodes[pred_id].additive_cost << endl;
+                queue.push(&nodes[pred_id]);  
             }
+
+            
         }
     }
 
