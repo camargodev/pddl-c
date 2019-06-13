@@ -4,6 +4,8 @@
 #include "and_or_graph.h"
 #include "relaxed_task.h"
 
+using namespace std;
+
 namespace planopt_heuristics {
 
 class RelaxedTaskGraph {
@@ -19,7 +21,11 @@ public:
 
     bool is_goal_relaxed_reachable();
     int additive_cost_of_goal();
+    void process_achievers(NodeID id);
     int ff_cost_of_goal();
+private:
+    int achievers_cost = 0;
+    unordered_set<NodeID> visitedIds;
 };
 
 }

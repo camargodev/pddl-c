@@ -77,15 +77,33 @@ int RelaxedTaskGraph::additive_cost_of_goal() {
     // Compute the weighted most conservative valuation of the graph and use it
     // to return the h^add value of the goal node.
 
-    cout << "GOAL ID is " << this->goal_node_id << endl;
+    // cout << "GOAL ID is " << this->goal_node_id << endl;
     this->graph.weighted_most_conservative_valuation();
     auto goal_node = this->graph.get_node(this->goal_node_id);
     return goal_node.additive_cost;
 }
 
-int RelaxedTaskGraph::ff_cost_of_goal() {
-    // TODO: add your code for exercise 2 (e) here.
-    return -1;
+void RelaxedTaskGraph::process_achievers(NodeID id) {
+
+    auto node = this->graph.get_node(id);
+    if (this->visitedIds.find(id) == this->visitedIds.end()) {
+        this->achievers_cost += node.direct_cost;
+        this->visitedIds.insert(id);
+    }
+    if (node.type == NodeType::OR) {
+        this->process_achievers(node.achiever);
+    } else {
+        for (auto succ_id : node.successor_ids) {
+            this->process_achievers(succ_id);
+        }
+    }    
 }
 
+int RelaxedTaskGraph::ff_cost_of_goal() {
+    this->graph.weighted_most_conservative_valuation();
+    this->achievers_cost = 0;
+    this->visitedIds.clear();
+    this->process_achievers(this->goal_node_id);
+    return this->achievers_cost;
+}
 }

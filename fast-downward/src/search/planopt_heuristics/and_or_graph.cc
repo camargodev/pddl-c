@@ -137,21 +137,22 @@ void AndOrGraph::weighted_most_conservative_valuation() {
     }
     
     while (queue.size() > 0) {
-        AndOrGraphNode* n = queue.top();
+        AndOrGraphNode* curr_node = queue.top();
         queue.pop();
-        n->forced_true = true;
+        curr_node->forced_true = true;
         // cout << "I popped node " << n->id << " which has " << n->predecessor_ids.size() << " preds and cost " << n->additive_cost << endl;
         
-        for (auto pred_id : n->predecessor_ids) {
+        for (auto pred_id : curr_node->predecessor_ids) {
             nodes[pred_id].num_forced_successors += 1;
            
             if (nodes[pred_id].type == NodeType::OR) {
                 // cout << "Node " << pred_id << " is an OR" << endl;
-                int cost = nodes[pred_id].direct_cost + n->additive_cost;
+                int cost = nodes[pred_id].direct_cost + curr_node->additive_cost;
                 // cout << "New cost is " << cost << "; old is " << nodes[pred_id].additive_cost << endl;
                 if (cost < nodes[pred_id].additive_cost) {
                     nodes[pred_id].additive_cost = cost;
                     // cout << "  I queued " << pred_id << " with add cost " <<  nodes[pred_id].additive_cost << endl;
+                    nodes[pred_id].achiever = curr_node->id;
                     queue.push(&nodes[pred_id]);  
                 }
                 continue;
@@ -175,11 +176,6 @@ void AndOrGraph::weighted_most_conservative_valuation() {
             
         }
     }
-
-
-    /*
-      TODO: add your code for exercise 2 (c) here.
-    */
 }
 
 void add_nodes(vector<string> names, NodeType type, AndOrGraph &g, unordered_map<string, NodeID> &ids) {
